@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "title": "Webcam",
+        "description": "Logitech C920 HD Webcam",
+        "cost": 39.95,
+        "imageUri": "https://cdn.mos.cms.futurecdn.net/GmxhF6gPGczGwNjf2ztT4e.jpg"
+    },
+    {
+        "id": 2,
+        "title": "Mouse",
+        "description": "Logitech M185 Mouse",
+        "cost": 9.95,
+        "imageUri": "https://m.media-amazon.com/images/I/61N+CzcA8vL._AC_UF894,1000_QL80_.jpg"
+    },
+    {
+        "id": 3,
+        "title": "Keyboard",
+        "description": "Logitech K270 Keyboard",
+        "cost": 12.95,
+        "imageUri": "https://m.media-amazon.com/images/I/61FxW-B6tgL._AC_UF894,1000_QL80_.jpg"
+    },
+    {
+        "id": 4,
+        "title": "USB Drive",
+        "description": "Cruiser Glide 8GB USB Drive",
+        "cost": 4.95,
+        "imageUri": "https://i5.walmartimages.com/asr/d0e3622c-9609-4e6e-a6fa-d5ae55a81217.95fba9d55aacd24e73d9667a5cc7c443.jpeg"
+    }
+]
