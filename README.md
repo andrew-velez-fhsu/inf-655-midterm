@@ -6,6 +6,11 @@ This project allows the user to browse, search and purchase products, using Reac
 
 Note that since this isn't connected to a live data source, a static list of products is stored in JSON. Since this list doesn't change, it is not included as state.
 
+## To Run
+
+Requires Node 20+
+From the project root, run `npm install`, then `npm start`
+
 ## Folder Structure
 
 ### Components
