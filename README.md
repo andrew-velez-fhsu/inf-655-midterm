@@ -12,8 +12,13 @@ Note that since this isn't connected to a live data source, a static list of pro
 
 Contains the shared react components, including
 
+- AddressForm - used to collect shipping information
+- CartTotal - a widget to show the value of the cart
 - Header - the shared page header
+- PaymentForm - used to collect credit card data
 - Product - a card that shows a product
+- ProductSubTotal - a card to show product order summary
+- Review - a component that provides a final check before ordering
 
 ### Context
 
@@ -32,6 +37,7 @@ Contains the static data used by the application. These would usually be impleme
 Contains the pages that are available in the application
 
 - Cart - Shows the items in the cart, along with the subtotal
+- Checkout - Handles the checkout process
 - Home - The home page
 - Product - Shows a products details
 - Search - Browse or search for products

@@ -4,8 +4,11 @@
 
 
 .img {
+  
+  
   width: 100%;
-  height: 5rem;
+  height: auto;
+  
 }
 
 .imgDetail {
@@ -57,4 +60,45 @@ nav a {
 .active{
   font-weight: bold;
   color: #fff;
+}
+
+.cartItemDetails, .cartItemCost {
+  padding-top:15px;
+}
+
+.cartItem{
+  border: 1px #eee solid;
+  border-radius: 3px;
+  margin-bottom: 1rem;
+}
+
+.total{
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.textInput{
+  margin-bottom: .2rem;
+}
+
+.addressForm{
+  padding:1rem;
+}
+
+.subSection{
+  margin: 1.5rem 0;
+}
+
+.checkoutButton{
+  padding-top: 10px;
+}
+
+.subTotal{
+  font-size: 1.5rem;
+  margin: 1.2rem 0;
+}
+
+.shoppingButton{
+  margin: 1rem 2rem;
+  padding: 10px;
 }

@@ -10,17 +10,24 @@ import {
   DeleteOutline,
   RemoveCircleOutline,
 } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 
 export default function ProductDetails() {
   const { id } = useParams();
-  const cart = useContext(CartContext);
+  const { cart, updateCart, removeFromCart, getFromCart, containsItem } =
+    useContext(CartContext);
+
   const [quantity, setQuantity] = useState(
-    Number(id) in cart ? cart[id]["quantity"] : 0
+    getFromCart(id) ? getFromCart(id)["quantity"] : 0
   );
-  const [showDelete, setShowDelete] = useState(Number(id) in cart);
+  const [showDelete, setShowDelete] = useState(getFromCart(id) !== undefined);
   //if (Object.keys(cart).includes(id)) setQuantity(cart[id].quantity);
 
   const product = Products.find((p) => p.id === Number(id));
+
+  console.log(product);
+  console.log(cart);
 
   const handleIncrementQuantity = () => {
     setQuantity(quantity + 1);
@@ -29,21 +36,33 @@ export default function ProductDetails() {
     setQuantity(quantity - 1);
   };
 
+  const checkCartContainsItem = () => {
+    let contains = containsItem(id);
+    console.log(`Cart contains item ${id} ${contains}`);
+    return contains;
+  };
+
   const handleAddToCart = () => {
-    cart[id] = {
+    updateCart({
       ...product,
       quantity: quantity,
       subTotal: product.cost * quantity,
-    };
+    });
     setShowDelete(true);
-    console.log(cart);
+    console.log(`Cart after add: ${cart}`);
   };
 
   const handleRemoveFromCart = () => {
-    delete cart[id];
+    removeFromCart(product.id);
     setQuantity(0);
     setShowDelete(false);
-    console.log(cart);
+    console.log(`Cart after remove: ${cart}`);
+  };
+
+  let navigate = useNavigate();
+  const handleRouteChange = () => {
+    let path = `/cart`;
+    navigate(path);
   };
 
   let USDollar = new Intl.NumberFormat("en-US", {
@@ -90,24 +109,35 @@ export default function ProductDetails() {
               onClick={handleAddToCart}
               disabled={quantity < 1}
             >
-              Add to Cart
+              {checkCartContainsItem() ? "Update Cart" : "Add to Cart"}
             </Button>
           </div>
           {showDelete && (
-            <>
-              <span>
-                Sub-total:{" "}
-                {USDollar.format(product.cost * cart[id]["quantity"])}
-              </span>
-              <Button
-                variant="contained"
-                startIcon={<DeleteOutline />}
-                onClick={handleRemoveFromCart}
-              >
-                Remove from Cart
-              </Button>
-            </>
+            <div>
+              <div className="subTotal">
+                Sub-total: {USDollar.format(product.cost * quantity)}
+              </div>
+              <div>
+                <Button
+                  variant="outlined"
+                  startIcon={<DeleteOutline />}
+                  onClick={handleRemoveFromCart}
+                >
+                  Remove from Cart
+                </Button>
+              </div>
+            </div>
           )}
+          <div className="checkoutButton">
+            <Button
+              disabled={cart.length === 0}
+              variant="contained"
+              onClick={handleRouteChange}
+              startIcon={<ShoppingCartCheckoutIcon />}
+            >
+              Checkout
+            </Button>
+          </div>
         </Grid>
       </Grid>
     </>

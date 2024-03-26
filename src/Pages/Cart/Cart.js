@@ -1,26 +1,18 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import Header from "../../Components/Header";
 import { CartContext } from "../../Context/CartContext";
-import { Grid, Typography, Button } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import ProductSubTotal from "../../Components/ProductSubTotal";
+import CartTotal from "../../Components/CartTotal";
 
 export default function Cart() {
-  const [subTotal, setSubtotal] = useState(0);
-  const cart = useContext(CartContext);
+  const { cart } = useContext(CartContext);
 
-  for (const [key, value] of Object.entries(cart)) {
-    console.log(`${key}: ${value}`);
-  }
-
-  const renderLine = () => {
-    for (const [key, value] of Object.entries(cart)) {
-      return (
-        <div>
-          `${key}: ${value}`
-        </div>
-      );
-    }
-  };
+  let total = cart
+    .map((item) => item.subTotal)
+    .reduce((accumulator, currentValue) => {
+      return accumulator + currentValue;
+    }, 0);
 
   return (
     <>
@@ -28,8 +20,15 @@ export default function Cart() {
       <Typography variant="h3" component="h2">
         Your Cart
       </Typography>
-      <renderLine />
-      <Grid container></Grid>
+
+      <Grid container>
+        {cart.map((item) => {
+          return (
+            <ProductSubTotal key={item.id} {...item} disableEditing={false} />
+          );
+        })}
+        <CartTotal total={total} />
+      </Grid>
     </>
   );
 }

@@ -26,5 +26,12 @@
         "description": "Cruiser Glide 8GB USB Drive",
         "cost": 4.95,
         "imageUri": "https://i5.walmartimages.com/asr/d0e3622c-9609-4e6e-a6fa-d5ae55a81217.95fba9d55aacd24e73d9667a5cc7c443.jpeg"
+    },
+    {
+        "id": 5,
+        "title": "Monitor",
+        "description": "Samsung Odyssey G9 S49CG954 49\" 5K DQHD (5120 x 1440) 240Hz Curved Screen Monitor",
+        "cost": 899.99,
+        "imageUri": "https://90a1c75758623581b3f8-5c119c3de181c9857fcb2784776b17ef.ssl.cf2.rackcdn.com/676140_658948_01_front_zoom.jpg"
     }
 ]

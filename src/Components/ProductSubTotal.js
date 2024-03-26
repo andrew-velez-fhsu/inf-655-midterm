@@ -1,4 +1,7 @@
-import { Grid, Paper, Typography } from "@mui/material";
+import { Grid, Button, Typography } from "@mui/material";
+import { useContext } from "react";
+import { CartContext } from "../Context/CartContext";
+import { DeleteOutline } from "@mui/icons-material";
 
 export default function ProductSubTotal({
   id,
@@ -7,30 +10,41 @@ export default function ProductSubTotal({
   cost,
   imageUri,
   quantity,
-  cart,
+  disableEditing,
 }) {
-  let USDollar = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
+  const { USDollar, removeFromCart } = useContext(CartContext);
+
+  const handleRemoveFromCart = () => {
+    removeFromCart(id);
+  };
+
   return (
-    <Grid item xs={12}>
-      <Paper elevation={2}>
-        <Grid item xs={4}>
+    <>
+      <Grid className="cartItem" container item>
+        <Grid className="cartItemImage" item xs={4}>
           <img src={imageUri} alt={description} className="img" />
         </Grid>
-        <Grid item xs={5}>
-          {id}
+        <Grid className="cartItemDetails" item xs={5}>
           <Typography variant="h6" component="h3">
             {title}
           </Typography>
           <div>{description}</div>
           <div>Price: {cost}</div>
         </Grid>
-        <Grid item xs={3}>
-          <span>Sub-total: {USDollar.format(cost * quantity)}</span>
+        <Grid className="cartItemCost" item xs={3}>
+          <div>Number in Cart: {quantity}</div>
+          <div>Sub-total: {USDollar.format(cost * quantity)}</div>
+          {!disableEditing && (
+            <Button
+              variant="contained"
+              startIcon={<DeleteOutline />}
+              onClick={handleRemoveFromCart}
+            >
+              Remove from Cart
+            </Button>
+          )}
         </Grid>
-      </Paper>
-    </Grid>
+      </Grid>
+    </>
   );
 }
